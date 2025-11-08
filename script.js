@@ -80,3 +80,29 @@ function attack(player, damage, moveName) {
 
 // Initial update to show full health
 updateHealthBars();
+// --- Character Upload Logic ---
+
+// Get the input element and the image element
+const p1ImageUpload = document.getElementById('p1-image-upload');
+const p1Sprite = document.getElementById('p1-sprite');
+
+// Add an event listener that fires when a file is selected
+p1ImageUpload.addEventListener('change', function(event) {
+    // Check if a file was selected
+    if (event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
+        
+        // Use FileReader to read the file contents
+        const reader = new FileReader();
+        
+        // This function runs once the file has been successfully read
+        reader.onload = function(e) {
+            // Set the source of the <img> tag to the uploaded image data URL
+            p1Sprite.src = e.target.result;
+            gameMessage.textContent = "LeGion's look updated! Ready to fight.";
+        };
+        
+        // Read the file as a Data URL (which can be used as the image source)
+        reader.readAsDataURL(file);
+    }
+});
