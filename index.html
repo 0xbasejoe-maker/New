@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Clash - Basic HTML Fighter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Cyber Clash: Basic Brawl</h1>
+        
+        <div class="arena">
+            <div class="fighter" id="player1">
+                <div class="name">LeGion (Player 1)</div>
+                <div class="health-bar-container">
+                    <div class="health-bar" id="p1-health" style="width: 100%;"></div>
+                </div>
+                <div class="character-visual">👊</div> </div>
+
+            <div class="vs-text">VS</div>
+            
+            <div class="fighter" id="player2">
+                <div class="name">Opponent (Player 2)</div>
+                <div class="health-bar-container">
+                    <div class="health-bar" id="p2-health" style="width: 100%;"></div>
+                </div>
+                <div class="character-visual">🤖</div> </div>
+        </div>
+
+        <div class="controls">
+            <h2>LeGion's Moves:</h2>
+            <button onclick="attack(1, 10)">Neon Surge (10 DMG)</button>
+            <button onclick="attack(1, 25)">Hat Slice (25 DMG)</button>
+        </div>
+
+        <div id="game-message">Press a button to start the fight!</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
