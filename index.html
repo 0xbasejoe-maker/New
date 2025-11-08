@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyber Clash: Character Brawl</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Mortal Kombat Web Edition</title>
+<style>
+  body { margin:0; background:#000; overflow:hidden; touch-action: manipulation; }
+  canvas { display:block; margin:0 auto; image-rendering: pixelated; }
+  #ui { position:absolute; top:20px; left:0; right:0; display:flex; justify-content:space-between; padding:0 40px; pointer-events:none; }
+  .health-container { width:40%; height:30px; background:#111; border:4px solid #555; position:relative; }
+  .health { height:100%; background:linear-gradient(90deg, #f00, #f80, #0f0); transition:width 0.3s; }
+  .name { position:absolute; top:-25px; color:#fff; font-family:Arial; font-weight:bold; font-size:20px; }
+  #p1-name { left:10px; color:#00f9ff; }
+  #p2-name { right:10px; color:#ff0000; text-align:right; }
+  #msg { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:80px; color:#fff; font-family:Impact; 
+          text-shadow: 5px 5px 0px #000; opacity:0; pointer-events:none; }
+  .controls { position:absolute; bottom:20px; right:20px; color:#fff; font-family:Arial; background:rgba(0,0,0,0.7); padding:10px; border-radius:10px; }
+  @media (max-width: 800px) { .controls { display:block; } }
+</style>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Cyber Clash: Character Brawl</h1>
-        
-        <div class="arena">
-            <div class="fighter" id="player1">
-                <div class="name">LeGion</div>
-                <div class="health-bar-container">
-                    <div class="health-bar" id="p1-health" style="width: 100%;"></div>
-                </div>
-                <!-- LeGion character image --><img src="legion.png" alt="LeGion Character" class="character-image">
-            </div>
+<canvas id="c"></canvas>
+<div id="ui">
+  <div class="health-container">
+    <div class="name" id="p1-name">SCORPION</div>
+    <div class="health" id="p1-health" style="width:100%"></div>
+  </div>
+  <div class="health-container">
+    <div class="name" id="p2-name">SUB-ZERO</div>
+    <div class="health" id="p2-health" style="width:100%; float:right;"></div>
+  </div>
+</div>
+<div id="msg"></div>
+<div class="controls" id="ctrl">
+  Player 1: A/D = Move, W = Jump, J = Punch, K = Kick, L = Block, Space = Special<br>
+  Player 2: ←→ = Move, ↑ = Jump, Num1 = Punch, Num2 = Kick, Num3 = Block, Enter = Special
+</div>
 
-            <div class="vs-text">VS</div>
-            
-            <div class="fighter" id="player2">
-                <div class="name">The Wanderer</div>
-                <div class="health-bar-container">
-                    <div class="health-bar" id="p2-health" style="width: 100%;"></div>
-                </div>
-                <!-- The Wanderer character image --><img src="wanderer.png" alt="Wanderer Character" class="character-image">
-            </div>
-        </div>
+<script>
+// ====================== MORTAL KOMBAT WEB GAME ======================
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+canvas.width = 1024;
+canvas.height = 576;
 
-        <div class="controls">
-            <h2>LeGion's Moves:</h2>
-            <button onclick="attack(1, 15, 'Neon Surge')">Neon Surge (15 DMG)</button>
-            <button onclick="attack(1, 25, 'Grapple Chain')">Grapple Chain (25 DMG)</button>
-            <button onclick="attack(1, 35, 'Altitude Drop')">Altitude Drop (35 DMG)</button>
-        </div>
+const gravity = 0.7;
+const keys = {};
+let winner = null;
 
-        <div id="game-message">LeGion's turn! Choose a move.</div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
-        <div class="image-upload-area">
-            <h3>Customize LeGion:</h3>
-            <input type="file" id="p1-image-upload" accept="image/*">
-        </div>
-        <div class="controls">
-            </div>
+// Simple sprite class
+class Fighter {
+  constructor({position, color, offset, name, side}) {
+    this.position = position;
+    this.velocity = {x:0, y:0};
+    this.width = 60;
+    this.height = 150;
+    this.color = color;
+    this.offset = offset;
+    this.name = name;
+    this.side = side;
+    this.health = 100;
+    this.isAttacking = false;
+    this.blocking = false;
+    this.lastKey;
+    this.attackBox
