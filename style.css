@@ -145,4 +145,24 @@ h1 {
     font-size: 1.4em;
     color: #ffcc00; /* Yellow for messages */
     text-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+}.image-upload-area {
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px dashed #00ffc4;
+    border-radius: 8px;
 }
+
+.image-upload-area h3 {
+    margin-top: 0;
+    color: #ff007f;
+}
+
+input[type="file"] {
+    color: #00ffc4;
+    padding: 10px;
+    background-color: #1a1a2e;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
