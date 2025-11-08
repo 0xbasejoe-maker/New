@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Clash: Character Brawl</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Cyber Clash: Character Brawl</h1>
+        
+        <div class="arena">
+            <div class="fighter" id="player1">
+                <div class="name">LeGion</div>
+                <div class="health-bar-container">
+                    <div class="health-bar" id="p1-health" style="width: 100%;"></div>
+                </div>
+                <!-- LeGion character image --><img src="legion.png" alt="LeGion Character" class="character-image">
+            </div>
+
+            <div class="vs-text">VS</div>
+            
+            <div class="fighter" id="player2">
+                <div class="name">The Wanderer</div>
+                <div class="health-bar-container">
+                    <div class="health-bar" id="p2-health" style="width: 100%;"></div>
+                </div>
+                <!-- The Wanderer character image --><img src="wanderer.png" alt="Wanderer Character" class="character-image">
+            </div>
+        </div>
+
+        <div class="controls">
+            <h2>LeGion's Moves:</h2>
+            <button onclick="attack(1, 15, 'Neon Surge')">Neon Surge (15 DMG)</button>
+            <button onclick="attack(1, 25, 'Grapple Chain')">Grapple Chain (25 DMG)</button>
+            <button onclick="attack(1, 35, 'Altitude Drop')">Altitude Drop (35 DMG)</button>
+        </div>
+
+        <div id="game-message">LeGion's turn! Choose a move.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
