@@ -62,4 +62,6 @@ class Fighter {
     this.isAttacking = false;
     this.blocking = false;
     this.lastKey;
-    this.attackBox
+    this.attackBox = {
+      position: {x: this.position.x, y: this.position.y},
+      width: 140
