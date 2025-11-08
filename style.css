@@ -1,0 +1,88 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #1a1a2e; /* Dark, cyberpunk background */
+    color: #00ffc4; /* Neon text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.game-container {
+    background-color: #0f0f1b;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 40px rgba(0, 255, 196, 0.4);
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+}
+
+h1 {
+    color: #ff007f; /* Secondary neon color */
+    text-shadow: 0 0 10px #ff007f;
+}
+
+.arena {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin: 30px 0;
+    position: relative;
+    border-bottom: 5px solid #00ffc4;
+    padding-bottom: 20px;
+}
+
+.vs-text {
+    position: absolute;
+    top: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ff007f;
+}
+
+.fighter {
+    width: 40%;
+    text-align: center;
+}
+
+.health-bar-container {
+    width: 100%;
+    height: 25px;
+    background-color: #555;
+    border: 2px solid #00ffc4;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.health-bar {
+    height: 100%;
+    background-color: red;
+    transition: width 0.5s ease-out; /* Smooth transition for health loss */
+}
+
+#player1 .health-bar { background-color: #00ffc4; }
+#player2 .health-bar { background-color: #ff007f; }
+
+.character-visual {
+    font-size: 4em;
+    height: 100px;
+    line-height: 100px;
+}
+
+.controls button {
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #ff007f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.controls button:hover {
+    background-color: #ff3399;
+}
